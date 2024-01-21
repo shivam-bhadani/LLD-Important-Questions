@@ -3,26 +3,26 @@ using namespace std;
 
 #define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
-class IPayment {
+class PaymentStrategy {
 public:
     virtual double calculateCost(double hours) = 0;
 };
 
-class BikePayment: public IPayment {
+class BikePayment: public PaymentStrategy {
 public:
     double calculateCost(double hours) override {
         return 2 * hours;
     }
 };
 
-class CarPayment: public IPayment {
+class CarPayment: public PaymentStrategy {
 public:
     double calculateCost(double hours) override {
         return 3 * hours;
     }
 };
 
-class BusPayment: public IPayment {
+class BusPayment: public PaymentStrategy {
 public:
     double calculateCost(double hours) override {
         return 4 * hours;
@@ -31,7 +31,7 @@ public:
 
 class Vehicle {
 protected:
-    IPayment *payment;
+    PaymentStrategy *payment;
     chrono::time_point<chrono::system_clock> parkedTime;
 
 public:
